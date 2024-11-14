@@ -3,53 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image to Link Converter</title>
+    <title>Upload Your Image</title>
     <style>
-        /* General styling */
+        /* Ensure the body takes up the entire viewport and uses flex layout */
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
+            background-color: #f8f9fa;
             color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Header styling */
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        
-        header img {
-            max-width: 150px;
-            margin-bottom: 0.5rem;
         }
 
-        /* Container styling */
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
         .container {
+            flex: 1; /* This makes the container expand to take up space */
             max-width: 600px;
-            margin: 3rem auto;
+            margin: 2rem auto;
             padding: 2rem;
             background-color: #fff;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .upload-box {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-        }
-        
-        /* Form input styling */
-        input[type="file"] {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
         }
 
         button {
@@ -67,12 +55,12 @@
             background-color: #45a049;
         }
 
-        /* Footer styling */
         footer {
             background-color: #333;
             color: #fff;
-            padding: 2rem 0;
+            padding: 2rem;
             text-align: center;
+            margin-top: auto; /* Pushes footer to the bottom */
         }
 
         footer a {
@@ -94,19 +82,15 @@
 </head>
 <body>
     <header>
-        <a href="https://yourhomepage.com">
-            <img src="https://yourhomepage.com/path/to/your/logo.png" alt="Logo">
-        </a>
-        <h1>Image to Link Converter</h1>
+        <h1>Upload Your Image</h1>
     </header>
     
     <div class="container">
-        <p>Convert your images to shareable links easily. Simply upload an image, and we'll generate a unique URL for you to share with friends, colleagues, or embed in your projects.</p>
-        <form method="post" enctype="multipart/form-data" class="upload-box">
+        <form method="post" action="{% url 'saveImage' %}" enctype="multipart/form-data" class="upload-box">
             {% csrf_token %}
             <label for="image">Select an image to upload:</label>
-            <input type="1" name="image" id="image" required>
-            <button type="submit">Convert to Link</button>
+            <input type="file" name="image" id="image" required>
+            <button type="submit">Upload Image</button>
         </form>
     </div>
     

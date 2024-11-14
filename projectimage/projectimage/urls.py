@@ -15,8 +15,9 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
-from .view import LandingPage
+from .view import LandingPage, saveImage
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path("", LandingPage)
+    path("", LandingPage, name = "LandingPage"),
+    path("/saveImage", saveImage, name = "saveImage")
 ]
