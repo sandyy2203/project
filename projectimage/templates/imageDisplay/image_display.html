@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Display</title>
+</head>
+<body>
+    <h1>Image Uploaded Successfully</h1>
+    <div>
+        <h3>Image</h3>
+        <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    </div>
+    <div>
+        <h3>Image Link</h3>
+        <a href="{{ image_url }}" target="_blank">{{ image_url }}</a>
+    </div>
+    <div>
+        <h3>Base64 Representation</h3>
+        <textarea rows="10" cols="100" readonly>{{ base64_image }}</textarea>
+    </div>
+</body>
+</html>

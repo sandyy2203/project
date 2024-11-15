@@ -132,3 +132,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os
+folder_path = '/opt/imagetolink/images'
+MEDIA_ROOT = os.path.join(folder_path)
+MEDIA_URL = '/images/'
+

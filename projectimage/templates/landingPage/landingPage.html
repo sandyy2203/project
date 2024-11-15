@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Your Image</title>
+    <title>ImageToLink</title>
     <style>
         /* Ensure the body takes up the entire viewport and uses flex layout */
         body {
@@ -21,6 +21,18 @@
             color: #fff;
             padding: 1rem;
             text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header h2 {
+            margin: 0.5rem 0;
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: #b0b0b0;
         }
 
         .container {
@@ -55,6 +67,14 @@
             background-color: #45a049;
         }
 
+        .image-to-link-section {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
         footer {
             background-color: #333;
             color: #fff;
@@ -82,7 +102,8 @@
 </head>
 <body>
     <header>
-        <h1>Upload Your Image</h1>
+        <h1>ImageToLink</h1>
+        <h2>Upload your image and convert it into a clickable link easily.</h2>
     </header>
     
     <div class="container">
@@ -92,6 +113,18 @@
             <input type="file" name="image" id="image" required>
             <button type="submit">Upload Image</button>
         </form>
+
+        <!-- New section for "Image to Link" -->
+        <div class="image-to-link-section">
+            <h2>Image to Link</h2>
+            <p>Once you upload your image, it can be converted into a link. This means that by clicking on your image, users will be redirected to a specific URL. Below, you'll find the steps to create a link for your uploaded image:</p>
+            <ol>
+                <li>Upload your image using the form above.</li>
+                <li>Copy the URL of your uploaded image from the server response.</li>
+                <li>Use the URL to create a clickable link around your image.</li>
+            </ol>
+            <p>This feature can be useful for sharing images on your website, making your content more interactive and engaging. Whether you want to create image galleries, clickable product images, or add a promotional link to your image, this functionality can help you get it done efficiently!</p>
+        </div>
     </div>
     
     <footer>
