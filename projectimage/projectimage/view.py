@@ -35,9 +35,13 @@ def saveImage(request):
         image_data_ins = image_data(image_path=image_path, image_name=image_name)
         image_data_ins.save()
 
+        scheme = request.scheme
+        server_ip = request.META.get('HTTP_HOST', '127.0.0.1')
+        host = f"{scheme}://{server_ip}"
+
         # Render the HTML page
         return render(request, 'imageDisplay/image_display.html', {
-            'image_url': f'/images/{image_name}',  # Assuming MEDIA_URL is set up
+            'image_url': f'{host}/images/{image_name}',  # Assuming MEDIA_URL is set up
             'base64_image': f"data:image/{image_name.split('.')[-1]};base64,{base64_image}"
         })
 

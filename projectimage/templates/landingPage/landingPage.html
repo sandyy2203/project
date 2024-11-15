@@ -68,7 +68,7 @@
         }
 
         .image-to-link-section {
-            margin-top: 2rem;
+            margin-top: .5rem;
             padding: 1rem;
             background-color: #f1f1f1;
             border-radius: 5px;
@@ -107,13 +107,6 @@
     </header>
     
     <div class="container">
-        <form method="post" action="{% url 'saveImage' %}" enctype="multipart/form-data" class="upload-box">
-            {% csrf_token %}
-            <label for="image">Select an image to upload:</label>
-            <input type="file" name="image" id="image" required>
-            <button type="submit">Upload Image</button>
-        </form>
-
         <!-- New section for "Image to Link" -->
         <div class="image-to-link-section">
             <h2>Image to Link</h2>
@@ -125,6 +118,47 @@
             </ol>
             <p>This feature can be useful for sharing images on your website, making your content more interactive and engaging. Whether you want to create image galleries, clickable product images, or add a promotional link to your image, this functionality can help you get it done efficiently!</p>
         </div>
+        <br>
+        <form method="post" action="{% url 'saveImage' %}" enctype="multipart/form-data" class="upload-box">
+            {% csrf_token %}
+            <label for="image">Select an image to upload:</label>
+            <input type="file" name="image" id="image" required onchange="previewImage(event)">
+            
+            <!-- Image Preview Section -->
+            <div id="image-preview-container" style="margin-top: 1rem; display: none;">
+                <h3>Image Preview:</h3>
+                <img id="image-preview" src="" alt="Image Preview" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <button type="submit">Upload Image</button>
+        </form>
+        
+        <script>
+            // Function to preview the selected image
+            function previewImage(event) {
+                const file = event.target.files[0];
+                const previewContainer = document.getElementById('image-preview-container');
+                const previewImage = document.getElementById('image-preview');
+                
+                // Check if the file is an image
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    // Once the file is read, update the preview image source
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block'; // Show the preview container
+                    };
+                    
+                    // Read the selected image file
+                    reader.readAsDataURL(file);
+                } else {
+                    // If the selected file is not an image, hide the preview
+                    previewContainer.style.display = 'none';
+                }
+            }
+        </script>
+        
     </div>
     
     <footer>

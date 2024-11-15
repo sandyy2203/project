@@ -4,20 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Display</title>
+    <style>
+        /* Ensure the body takes up the entire viewport and uses flex layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header h2 {
+            margin: 0.5rem 0;
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: #b0b0b0;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        footer .social-icons a:hover {
+            color: #4CAF50;
+        }
+
+        .copy-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Uploaded Successfully</h1>
-    <div>
-        <h3>Image</h3>
-        <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    <header>
+        <h1>ImageToLink</h1>
+        <h2>Upload your image and convert it into a clickable link easily.</h2>
+    </header>
+
+    <div class="container">
+        <h1>Image Uploaded Successfully</h1>
+        <div>
+            <h3>Image</h3>
+            <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+        </div>
+        <div>
+            <h3>Image Link</h3>
+            <a href="{{ image_url }}" target="_blank">{{ image_url }}</a>
+            <!-- Copy Button for Image Link -->
+            <button class="copy-btn" onclick="copyToClipboard('{{ image_url }}')">Copy Link</button>
+        </div>
+        <div>
+            <h3>Base64 Representation</h3>
+            <textarea rows="10" readonly>{{ base64_image }}</textarea>
+            <!-- Copy Button for Base64 -->
+            <button class="copy-btn" onclick="copyToClipboard('{{ base64_image }}')">Copy Base64</button>
+        </div>
     </div>
-    <div>
-        <h3>Image Link</h3>
-        <a href="{{ image_url }}" target="_blank">{{ image_url }}</a>
-    </div>
-    <div>
-        <h3>Base64 Representation</h3>
-        <textarea rows="10" cols="100" readonly>{{ base64_image }}</textarea>
-    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Company | <a href="/privacy-policy">Privacy Policy</a></p>
+        <div class="social-icons">
+            <a href="https://twitter.com/yourcompany" target="_blank">Twitter</a>
+            <a href="https://facebook.com/yourcompany" target="_blank">Facebook</a>
+            <a href="https://linkedin.com/company/yourcompany" target="_blank">LinkedIn</a>
+        </div>
+        <p>Follow us for more updates and features!</p>
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Copied to clipboard!');
+        }
+    </script>
 </body>
 </html>
