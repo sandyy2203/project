@@ -69,6 +69,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'projectimage.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://imagetolink.site",
+    "https://imagetolink.site",  # Include if using HTTPS
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
