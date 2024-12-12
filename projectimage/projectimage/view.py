@@ -1,9 +1,9 @@
 from django.shortcuts import render
 import os
 from django.conf import settings
-from django.shortcuts import render
 from django.http import JsonResponse
 from .domains.image_data import image_data
+from django.views.decorators.csrf import csrf_exempt
 
 
 def LandingPage(request):
@@ -13,6 +13,7 @@ def LandingPage(request):
 from django.shortcuts import render
 import base64
 
+@csrf_exempt
 def saveImage(request):
     if request.method == 'POST' and request.FILES['image']:
         # Get the uploaded image from the request
