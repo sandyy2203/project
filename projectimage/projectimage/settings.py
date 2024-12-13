@@ -88,7 +88,7 @@ from mongoengine import connect
 MONGO_DATABASE_NAME = 'imagetolink'
 connect(
     db=MONGO_DATABASE_NAME,
-    host='mongodb://localhost:27017/',
+    host='mongodb://172.26.7.174:27017/',
     # username='your_username',  # Optional, if authentication is needed
     # password='your_password',  # Optional, if authentication is needed
     authentication_source='admin'  # Optional, specifies the authentication database
