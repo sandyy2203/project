@@ -38,7 +38,7 @@ def saveImage(request):
 
         scheme = request.scheme
         server_ip = request.META.get('HTTP_HOST', '127.0.0.1')
-        host = f"{scheme}://{server_ip}"
+        host = f"{scheme}://imagetolink.site"
 
         # Render the HTML page
         return render(request, 'imageDisplay/image_display.html', {
